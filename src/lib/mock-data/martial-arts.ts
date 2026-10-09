@@ -452,4 +452,274 @@ export const martialArts: MartialArt[] = [
       },
     ],
   },
+  {
+    slug: "taekwondo",
+    name: "Taekwondo",
+    tagline: "Fast feet, sharp technique, and a very good stretch.",
+    description:
+      "Taekwondo is a Korean striking art best known for fast, high, and spinning kicks. Training blends kicking technique, patterned forms called poomsae, and sparring, with a strong emphasis on discipline and courtesy. Be prepared to discover exactly how flexible you are not.",
+    originCountry: "South Korea",
+    category: "striking",
+    difficulty: "beginner",
+    focusAreas: [
+      {
+        title: "Kicks",
+        description:
+          "Front, roundhouse, side, back, and spinning kicks, with an emphasis on speed, height, and accuracy. Legs do most of the talking here.",
+      },
+      {
+        title: "Poomsae",
+        description:
+          "Forms performed alone that link stances, blocks, and strikes, building balance and technique without needing a partner.",
+      },
+      {
+        title: "Sparring",
+        description:
+          "Timing, distance, and reacting to a live partner in protective gear, with points for clean, controlled strikes.",
+      },
+      {
+        title: "Flexibility and footwork",
+        description:
+          "Hip and leg mobility for high kicks, plus quick stepping and angling to close the gap or leave it.",
+      },
+    ],
+    benefits: [
+      {
+        title: "Clear, structured progression",
+        description:
+          "Colored belts and graded tests give you visible goals, which makes it easy to stay motivated.",
+      },
+      {
+        title: "Flexibility, balance, and leg strength",
+        description:
+          "Regular kicking practice builds a level of leg strength and mobility that carries over into everyday life.",
+      },
+      {
+        title: "Good for all ages",
+        description:
+          "Widely taught to children and teens, and just as workable for adults who want to start from the beginning.",
+      },
+      {
+        title: "Keeps trouble at a distance",
+        description:
+          "Fast, long-range kicking teaches you to manage space, which is half of staying safe.",
+      },
+    ],
+  },
+  {
+    slug: "wrestling",
+    name: "Wrestling",
+    tagline: "The oldest grappling sport, and no one has improved on the basics.",
+    description:
+      "Wrestling is built on takedowns and control: take an opponent to the ground, keep them there, and stop the same being done to you. It rewards strength, stamina, and relentless pressure, and it is among the most physically demanding martial arts there is. Nobody finishes a practice feeling rested.",
+    originCountry: "Worldwide (ancient origins)",
+    category: "grappling",
+    difficulty: "intermediate",
+    focusAreas: [
+      {
+        title: "Takedowns",
+        description:
+          "Single legs, double legs, and trips that bring an opponent to the mat. You decide how and where the fight reaches the ground.",
+      },
+      {
+        title: "Takedown defense",
+        description:
+          "Sprawling and balance to stay on your feet, which is a skill worth having long before it's needed.",
+      },
+      {
+        title: "Top control",
+        description:
+          "Riding, breaking down, and holding an opponent in place so they can't get back up or get away.",
+      },
+      {
+        title: "Escapes",
+        description:
+          "Standing up and getting out from underneath, built through constant live practice.",
+      },
+    ],
+    benefits: [
+      {
+        title: "Control over where a fight goes",
+        description:
+          "You learn to stay standing when you want to, and to control a single opponent when you have to.",
+      },
+      {
+        title: "Outstanding conditioning and toughness",
+        description:
+          "Few arts build strength, stamina, and mental grit as quickly as live wrestling does.",
+      },
+      {
+        title: "Techniques tested live",
+        description:
+          "Practice is hard and resisting, so you find out fast what actually works.",
+      },
+      {
+        title: "No uniform required",
+        description:
+          "The techniques work in everyday clothes, with no need to grab a jacket that won't be there.",
+      },
+    ],
+  },
+  {
+    slug: "kickboxing",
+    name: "Kickboxing",
+    tagline: "Boxing hands, plus the legs that boxing leaves at home.",
+    description:
+      "Kickboxing combines the punches and footwork of boxing with kicks borrowed from karate and Muay Thai, built around fast combinations thrown from a mobile stance. It is just as popular as a competitive sport as it is as a high-energy fitness class. Your lungs will have opinions.",
+    originCountry: "Japan and the United States",
+    category: "striking",
+    difficulty: "beginner",
+    focusAreas: [
+      {
+        title: "Combinations",
+        description:
+          "Chaining jabs, crosses, hooks, and kicks into smooth sequences, drilled on pads and heavy bags.",
+      },
+      {
+        title: "Kicks",
+        description:
+          "Round kicks, front kicks, and teeps to control distance and add power to the boxing basics.",
+      },
+      {
+        title: "Footwork and defense",
+        description:
+          "Moving in and out of range, changing angles, and defending with blocks, slips, and kick checks.",
+      },
+      {
+        title: "Conditioning",
+        description:
+          "Cardio, core strength, and stamina built through rounds of bag work, pads, and circuits.",
+      },
+    ],
+    benefits: [
+      {
+        title: "Easy to start",
+        description:
+          "A short list of core techniques means you can be useful in your first few classes, then keep improving for years.",
+      },
+      {
+        title: "Excellent cardio",
+        description:
+          "High-tempo rounds work the whole body and are an efficient way to build fitness.",
+      },
+      {
+        title: "Timing, speed, and composure",
+        description:
+          "Learning to throw and defend combinations under pressure builds confidence you can use elsewhere.",
+      },
+      {
+        title: "Widely available",
+        description:
+          "From competitive gyms to fitness classes, it's easy to find somewhere to train.",
+      },
+    ],
+  },
+  {
+    slug: "sambo",
+    name: "Sambo",
+    tagline: "Judo and wrestling went east and came back armed with leg locks.",
+    description:
+      "Sambo is a Russian martial art whose name means roughly \"self-defense without weapons\". It blends throws, ground control, and leg locks, with a combat version that adds striking. It is practical, efficient, and not widely known, which is rather the point of a secret weapon.",
+    originCountry: "Soviet Union (Russia)",
+    category: "hybrid",
+    difficulty: "intermediate",
+    focusAreas: [
+      {
+        title: "Throws",
+        description:
+          "Judo-style and wrestling-style throws and takedowns, done fast and with little wasted movement.",
+      },
+      {
+        title: "Leg locks",
+        description:
+          "Ankle locks, knee bars, and other leg attacks. Sport sambo allows them, which sets it apart from many grappling arts.",
+      },
+      {
+        title: "Ground work",
+        description:
+          "Pins, control, and escapes, built through short, intense rounds of live sparring.",
+      },
+      {
+        title: "Combat striking",
+        description:
+          "Combat sambo adds punches, kicks, and elbows in protective gear for a more complete approach.",
+      },
+    ],
+    benefits: [
+      {
+        title: "A well-rounded blend",
+        description:
+          "Throws, ground control, and leg locks in a single system, so you aren't learning one piece in isolation.",
+      },
+      {
+        title: "Tested in live practice",
+        description:
+          "Techniques are used against resisting partners, so you find out what actually works.",
+      },
+      {
+        title: "Strong conditioning",
+        description:
+          "Stamina, strength, and toughness come from constant live work.",
+      },
+      {
+        title: "Efficient and practical",
+        description:
+          "The system is built around what's fast and effective, with very little decoration.",
+      },
+    ],
+  },
+  {
+    slug: "eskrima",
+    name: "Eskrima",
+    tagline: "Learn it with a stick. It all transfers to your hands.",
+    description:
+      "Eskrima, also known as kali or arnis, is a Filipino martial art centered on sticks, blades, and improvised objects. Training begins with a rattan stick and applies the same angles and footwork to knives and empty hands. It is the art for people who've always wanted a good reason to hold a stick.",
+    originCountry: "Philippines",
+    category: "weapons",
+    difficulty: "intermediate",
+    focusAreas: [
+      {
+        title: "Angles",
+        description:
+          "Numbered strikes and the lines of attack they follow, which form the basis of everything else.",
+      },
+      {
+        title: "Footwork",
+        description:
+          "Moving in, out, and around an opponent in triangle and box patterns to manage distance.",
+      },
+      {
+        title: "Flow drills",
+        description:
+          "Continuous partner patterns like sinawali that build rhythm, coordination, and hand speed.",
+      },
+      {
+        title: "Blade work and empty hands",
+        description:
+          "Knife defense with training tools, then trapping, checking, and striking using the same movement.",
+      },
+    ],
+    benefits: [
+      {
+        title: "Coordination, timing, and hand speed",
+        description:
+          "Flow drills build fast, relaxed hands and the ability to keep a rhythm under pressure.",
+      },
+      {
+        title: "Awareness of armed situations",
+        description:
+          "You learn how weapons change distance and timing, which reinforces the advice to avoid and escape when possible.",
+      },
+      {
+        title: "One set of principles",
+        description:
+          "Sticks, knives, and empty hands share the same angles and footwork, so one skill supports the others.",
+      },
+      {
+        title: "Low-impact, partner-based practice",
+        description:
+          "Mostly rhythmic partner drills with modest equipment, which keeps the bruises to a minimum.",
+      },
+    ],
+  },
 ];
