@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Alfa_Slab_One, Crimson_Pro, Oswald } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
+import { ChatWidget } from "@/components/chat-widget";
 import { siteName } from "@/lib/mock-data/site-content";
 
 // Victorian slab wood-type for headings, book serif for body,
@@ -55,6 +56,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <footer>
           <p>&copy; {siteName}</p>
         </footer>
+        <ChatWidget />
       </body>
     </html>
   );

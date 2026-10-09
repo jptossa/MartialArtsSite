@@ -31,3 +31,13 @@ This is Next.js 16 with React 19 — newer than most training data. `AGENTS.md` 
 - `src/app/martial-arts/[slug]/page.tsx` uses `generateStaticParams` over `getMartialArts()` and `notFound()` for unknown slugs; `src/app/not-found.tsx` is the 404.
 - **Styling:** themed after HBO's "Warrior" (1870s San Francisco Chinatown) — dark only, soot/parchment/blood-red/brass palette as CSS variables at the top of `src/app/globals.css`. Styling is plain hand-written CSS in that one file (Tailwind is installed but unused); markup stays semantic HTML with a few class hooks (`.card-grid`, `.card`, `.button`, `.facts`, …). Three fonts are loaded via `next/font/google` in `src/app/layout.tsx` and exposed as `--font-display` (Alfa Slab One, headings), `--font-body` (Crimson Pro), `--font-label` (Oswald, nav/labels). Keep new UI on those tokens.
 - `.claude/launch.json` defines the `dev` preview server used by the desktop app's browser pane.
+
+## Chatbot
+
+A floating "Ask the Dojo" widget (`src/components/chat-widget.tsx`, mounted in `src/app/layout.tsx`) talks to `POST /api/chat` (`src/app/api/chat/route.ts`), which streams plain text from Claude Haiku (`claude-haiku-5-5`, override with `CHAT_MODEL`) via `@anthropic-ai/sdk`.
+
+- **Key:** `ANTHROPIC_API_KEY` in the git-ignored `.env` (see `.env.example`). Without it the route returns a friendly 503 that includes the support phone.
+- **Knowledge:** no retrieval. `src/lib/chat/knowledge.ts` reads every `content/martial-arts/*.txt` (file name = slug) into the system prompt built by `src/lib/chat/system-prompt.ts`, sent with `cache_control`. Adding or editing a write-up in `content/` changes the chatbot automatically; keep file names equal to the slugs in the mock data so `/martial-arts/<slug>` links resolve.
+- **Behavior rules live in the system prompt only:** stay on martial arts/self-defense (decline everything else), answer only from the documents, recommend 1–2 arts after at most 1–2 clarifying questions, and escalate to the fictional rep (`supportRep`/`supportPhone`/`supportHours` in `src/lib/mock-data/site-content.ts`) when unsure. Re-check these with the manual scenarios (on-topic, recommendation, off-topic, escalation, injection) after any prompt change; there is no automated test.
+- **Guards:** message/history length caps and a best-effort in-memory per-IP rate limit (`src/lib/chat/config.ts`). Haiku 5.5 rejects non-default `temperature`/`top_p`; the route sends `output_config.effort: "low"`.
+- If `next dev` serves stale CSS (another dev server already holding port 3000), use the `prod` preview config (`npm run build` first).
