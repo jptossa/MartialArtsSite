@@ -3,7 +3,12 @@ import { Alfa_Slab_One, Crimson_Pro, Oswald } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
 import { ChatWidget } from "@/components/chat-widget";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { siteName } from "@/lib/mock-data/site-content";
+
+// Runs in <head> before first paint so the page never flashes the wrong theme.
+// Saved choice wins; otherwise follow the OS setting; dark if anything throws.
+const THEME_INIT_SCRIPT = `(function(){var d=document.documentElement;try{var t=localStorage.getItem("theme");if(t!=="light"&&t!=="dark"){t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark"}d.dataset.theme=t}catch(e){d.dataset.theme="dark"}})()`;
 
 // Victorian slab wood-type for headings, book serif for body,
 // condensed gothic for labels/nav.
@@ -37,7 +42,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       className={`${display.variable} ${body.variable} ${label.variable}`}
+      suppressHydrationWarning
     >
+      <head>
+        {/* A plain inline script (not next/script, which defers it to Next's
+            runtime) so it runs synchronously during parsing, before first
+            paint. In dev React logs "Encountered a script tag" for this; it is
+            a dev-only warning and the script still runs. */}
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+      </head>
       <body>
         <header>
           <nav aria-label="Main">
@@ -48,6 +61,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               </li>
               <li>
                 <Link href="/martial-arts">Martial Arts</Link>
+              </li>
+              <li>
+                <ThemeToggle />
               </li>
             </ul>
           </nav>
