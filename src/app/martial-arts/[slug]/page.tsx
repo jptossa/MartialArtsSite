@@ -3,6 +3,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getMartialArtBySlug, getMartialArts } from "@/lib/martial-arts";
 
+// Opt out of instant-navigation validation: awaiting `params` is intentional,
+// and a Suspense boundary would turn the 404 for unknown slugs into a 200.
+export const instant = false;
+
 export async function generateStaticParams() {
   const arts = await getMartialArts();
   return arts.map((art) => ({ slug: art.slug }));
@@ -57,7 +61,10 @@ export default async function MartialArtPage(
             <h2 id="focus-heading">Focus Areas</h2>
             <ul>
               {art.focusAreas.map((area) => (
-                <li key={area}>{area}</li>
+                <li key={area.title}>
+                  <h3>{area.title}</h3>
+                  <p>{area.description}</p>
+                </li>
               ))}
             </ul>
           </section>
@@ -66,7 +73,10 @@ export default async function MartialArtPage(
             <h2 id="benefits-heading">Benefits</h2>
             <ul>
               {art.benefits.map((benefit) => (
-                <li key={benefit}>{benefit}</li>
+                <li key={benefit.title}>
+                  <h3>{benefit.title}</h3>
+                  <p>{benefit.description}</p>
+                </li>
               ))}
             </ul>
           </section>
