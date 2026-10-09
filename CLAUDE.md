@@ -4,8 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-Website for a self-defense/personal protection company. The end goal is a chatbot agent that recommends a martial art from user input; the current state is the marketing/catalog foundation (landing page, martial arts index, martial art show page) running on **mock data**. Planned stack: Next.js + Supabase (Supabase not wired up yet). Styling is deliberately deferred — pages are plain semantic HTML with no design work, so don't add styling unless asked.
-
+Website for a self-defense/personal protection company. The end goal is a chatbot agent that recommends a martial art from user input; the current state is the marketing/catalog foundation (landing page, martial arts index, martial art show page) running on **mock data**. Planned stack: Next.js + Supabase (Supabase not wired up yet).
 The real per-art details (fields and content) have not been provided. Ask the user for them art by art when that step comes; the current fields are placeholders.
 
 ## Commands
@@ -30,4 +29,5 @@ This is Next.js 16 with React 19 — newer than most training data. `AGENTS.md` 
 - App Router under `src/app`, import alias `@/*` → `src/*`. All pages are server components.
 - **Data-access seam:** pages never import mock data directly. They call the async functions in `src/lib/martial-arts.ts` (`getMartialArts`, `getMartialArtBySlug`), which currently read from `src/lib/mock-data/martial-arts.ts`. The Supabase migration should only change the bodies of those functions (and `src/lib/types.ts` if the schema changes), not the pages. Landing-page copy (mission, benefits, services, `siteName`) lives in `src/lib/mock-data/site-content.ts` and is imported directly.
 - `src/app/martial-arts/[slug]/page.tsx` uses `generateStaticParams` over `getMartialArts()` and `notFound()` for unknown slugs; `src/app/not-found.tsx` is the 404.
+- **Styling:** themed after HBO's "Warrior" (1870s San Francisco Chinatown) — dark only, soot/parchment/blood-red/brass palette as CSS variables at the top of `src/app/globals.css`. Styling is plain hand-written CSS in that one file (Tailwind is installed but unused); markup stays semantic HTML with a few class hooks (`.card-grid`, `.card`, `.button`, `.facts`, …). Three fonts are loaded via `next/font/google` in `src/app/layout.tsx` and exposed as `--font-display` (Alfa Slab One, headings), `--font-body` (Crimson Pro), `--font-label` (Oswald, nav/labels). Keep new UI on those tokens.
 - `.claude/launch.json` defines the `dev` preview server used by the desktop app's browser pane.

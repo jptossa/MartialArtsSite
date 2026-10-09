@@ -27,40 +27,50 @@ export default async function MartialArtPage(
   return (
     <main>
       <p>
-        <Link href="/martial-arts">&larr; All martial arts</Link>
+        <Link className="back-link" href="/martial-arts">
+          &larr; All martial arts
+        </Link>
       </p>
 
       <article>
         <h1>{art.name}</h1>
-        <p>{art.tagline}</p>
-        <p>{art.description}</p>
+        <p className="tagline">{art.tagline}</p>
+        <p className="lede">{art.description}</p>
 
-        <dl>
-          <dt>Origin</dt>
-          <dd>{art.originCountry}</dd>
-          <dt>Category</dt>
-          <dd>{art.category}</dd>
-          <dt>Difficulty</dt>
-          <dd>{art.difficulty}</dd>
+        <dl className="facts">
+          <div>
+            <dt>Origin</dt>
+            <dd>{art.originCountry}</dd>
+          </div>
+          <div>
+            <dt>Category</dt>
+            <dd>{art.category}</dd>
+          </div>
+          <div>
+            <dt>Difficulty</dt>
+            <dd>{art.difficulty}</dd>
+          </div>
         </dl>
 
-        <section aria-labelledby="focus-heading">
-          <h2 id="focus-heading">Focus Areas</h2>
-          <ul>
-            {art.focusAreas.map((area) => (
-              <li key={area}>{area}</li>
-            ))}
-          </ul>
-        </section>
+        <div className="detail-lists">
+          <section aria-labelledby="focus-heading">
+            <h2 id="focus-heading">Focus Areas</h2>
+            <ul>
+              {art.focusAreas.map((area) => (
+                <li key={area}>{area}</li>
+              ))}
+            </ul>
+          </section>
 
-        <section aria-labelledby="benefits-heading">
-          <h2 id="benefits-heading">Benefits</h2>
-          <ul>
-            {art.benefits.map((benefit) => (
-              <li key={benefit}>{benefit}</li>
-            ))}
-          </ul>
-        </section>
+          <section aria-labelledby="benefits-heading">
+            <h2 id="benefits-heading">Benefits</h2>
+            <ul>
+              {art.benefits.map((benefit) => (
+                <li key={benefit}>{benefit}</li>
+              ))}
+            </ul>
+          </section>
+        </div>
       </article>
     </main>
   );

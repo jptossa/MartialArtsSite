@@ -13,15 +13,20 @@ export default async function MartialArtsPage() {
   return (
     <main>
       <h1>Martial Arts</h1>
-      <p>Explore the styles we offer and find the one that fits you.</p>
-      <ul>
+      <p className="page-intro">
+        Eight disciplines, centuries of tradition, and one of them is right for
+        you. Browse the styles we teach, or ask our assistant to pick for you.
+      </p>
+      <ul className="card-grid">
         {arts.map((art) => (
-          <li key={art.slug}>
+          <li className="card" key={art.slug}>
             <h2>
-              <Link href={`/martial-arts/${art.slug}`}>{art.name}</Link>
+              <Link className="card-link" href={`/martial-arts/${art.slug}`}>
+                {art.name}
+              </Link>
             </h2>
             <p>{art.tagline}</p>
-            <p>
+            <p className="meta">
               {art.category} · {art.difficulty}
             </p>
           </li>
