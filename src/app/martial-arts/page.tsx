@@ -14,8 +14,9 @@ export default async function MartialArtsPage() {
     <main>
       <h1>Martial Arts</h1>
       <p className="page-intro">
-        Eight disciplines, centuries of tradition, and one of them is right for
-        you. Browse the styles we teach, or ask our assistant to pick for you.
+        Striking, grappling, and weapons, centuries of tradition, and one style
+        that is right for you. Browse what we teach, or ask our assistant to
+        pick for you.
       </p>
       <ul className="card-grid">
         {arts.map((art) => (
