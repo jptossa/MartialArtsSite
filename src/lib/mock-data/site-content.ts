@@ -59,3 +59,10 @@ export const services: Service[] = [
       "Short, focused sessions on real-world personal safety for individuals, groups, and organizations. Great for teams. Less great for the office holiday party.",
   },
 ];
+
+// Fictional contact details (555-01xx numbers are reserved for fiction).
+// The chatbot escalates here when it can't answer from its documents.
+export const supportRep = "Sifu Sensei";
+export const supportPhone = "(555) 010-0142";
+export const supportPhoneHref = "tel:+15550100142";
+export const supportHours = "Monday to Friday, 9am to 6pm Pacific";
