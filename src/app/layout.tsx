@@ -54,6 +54,17 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </header>
         {children}
         <footer>
+          <section className="disclaimer" aria-labelledby="disclaimer-heading">
+            <h2 id="disclaimer-heading">Disclaimer</h2>
+            <p>
+              Martial arts and self-defense training carry a real risk of
+              injury. Check with a physician before you begin, and train with a
+              qualified instructor. Nothing on this site, including
+              recommendations from Ask the Dojo, is medical, legal, or
+              professional advice, and no amount of training can guarantee your
+              safety. When you can leave, leave.
+            </p>
+          </section>
           <p>&copy; {siteName}</p>
         </footer>
         <ChatWidget />

@@ -1,6 +1,11 @@
 export type MartialArtCategory = "striking" | "grappling" | "hybrid" | "weapons";
 export type Difficulty = "beginner" | "intermediate" | "advanced";
 
+export type MartialArtDetail = {
+  title: string;
+  description: string;
+};
+
 export type MartialArt = {
   slug: string;
   name: string;
@@ -9,8 +14,8 @@ export type MartialArt = {
   originCountry: string;
   category: MartialArtCategory;
   difficulty: Difficulty;
-  focusAreas: string[];
-  benefits: string[];
+  focusAreas: MartialArtDetail[];
+  benefits: MartialArtDetail[];
 };
 
 export type Benefit = {
