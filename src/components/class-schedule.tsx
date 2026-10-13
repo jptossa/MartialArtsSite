@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { unstable_rethrow } from "next/navigation";
 import { BookButton, CancelButton } from "@/components/booking-buttons";
 import { getCurrentUser, isSupabaseConfigured } from "@/lib/auth";
 import { getSchedule } from "@/lib/classes";
@@ -12,13 +13,19 @@ export async function ClassSchedule({ artSlug }: { artSlug: string }) {
     return <p>Class booking opens soon.</p>;
   }
 
+  // Read the session first, outside the try: during prerendering this is
+  // where the request-time read defers the component, and a catch must not
+  // swallow that.
+  const user = await getCurrentUser();
+
   let sessions: ClassSession[];
   try {
     sessions = await getSchedule(artSlug);
-  } catch {
+  } catch (error) {
+    unstable_rethrow(error);
+    console.error(error);
     return <p>The class schedule is unavailable right now. Please try again.</p>;
   }
-  const user = await getCurrentUser();
 
   if (sessions.length === 0) {
     return <p>No classes are scheduled in the next four weeks.</p>;

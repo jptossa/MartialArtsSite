@@ -104,11 +104,13 @@ create policy "profiles: update own" on public.profiles
   using (id = (select auth.uid()))
   with check (id = (select auth.uid()));
 
+-- Table privileges. Newer Supabase projects do not auto-grant new tables to
+-- the API roles, so grant exactly what is needed; RLS then narrows it per row.
 -- Members may only change their name and phone; promoting a role is done by an
 -- admin in the SQL editor.
-revoke update on public.profiles from authenticated, anon;
+revoke all on public.profiles from authenticated, anon;
+grant select on public.profiles to authenticated;
 grant update (full_name, phone) on public.profiles to authenticated;
-revoke insert, delete on public.profiles from authenticated, anon;
 
 create policy "templates: public read active" on public.class_templates
   for select to anon, authenticated
@@ -123,9 +125,15 @@ create policy "bookings: read own or admin" on public.bookings
   for select to authenticated
   using (user_id = (select auth.uid()) or public.is_admin());
 
-revoke insert, update, delete on public.bookings from authenticated, anon;
-revoke all on public.bookings from anon;
-revoke all on public.profiles from anon;
+-- Bookings are read-only for clients; writes go through book_class() /
+-- cancel_booking().
+revoke all on public.bookings from authenticated, anon;
+grant select on public.bookings to authenticated;
+
+-- Everyone can read the timetable; only admins (by RLS) can change it.
+revoke all on public.class_templates from authenticated, anon;
+grant select on public.class_templates to anon, authenticated;
+grant insert, update on public.class_templates to authenticated;
 
 -- ------------------------------------------------------------ functions ----
 -- Errors are raised as short codes; the app maps them to messages.

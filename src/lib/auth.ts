@@ -27,16 +27,25 @@ export const getCurrentUser = cache(async (): Promise<CurrentUser | null> => {
 
   const supabase = await createClient();
   // getClaims() verifies the JWT; getSession() would trust the cookie as-is.
-  const { data } = await supabase.auth.getClaims();
+  const { data, error: claimsError } = await supabase.auth.getClaims();
+  if (claimsError) console.error("getCurrentUser: getClaims failed", claimsError);
   const claims = data?.claims;
   if (!claims) return null;
 
-  const { data: profile } = await supabase
+  const { data: profile, error: profileError } = await supabase
     .from("profiles")
     .select("full_name, phone, role")
     .eq("id", claims.sub)
     .single();
-  if (!profile) return null;
+  if (!profile) {
+    // A valid session without a readable profile row: say why, don't just
+    // look "logged out".
+    console.error("getCurrentUser: signed in but no profile", {
+      userId: claims.sub,
+      error: profileError,
+    });
+    return null;
+  }
 
   return {
     id: claims.sub,
