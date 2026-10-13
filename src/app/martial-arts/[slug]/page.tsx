@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
+import { ClassSchedule } from "@/components/class-schedule";
 import { getMartialArtBySlug, getMartialArts } from "@/lib/martial-arts";
 
 // Opt out of instant-navigation validation: awaiting `params` is intentional,
@@ -81,6 +83,13 @@ export default async function MartialArtPage(
             </ul>
           </section>
         </div>
+
+        <section aria-labelledby="schedule-heading" className="schedule-section">
+          <h2 id="schedule-heading">Class Schedule</h2>
+          <Suspense fallback={<p>Loading schedule&hellip;</p>}>
+            <ClassSchedule artSlug={art.slug} />
+          </Suspense>
+        </section>
       </article>
     </main>
   );
