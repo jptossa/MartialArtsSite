@@ -26,6 +26,7 @@
   --gold: #c79a45;
   --gold-dim: #8f6e2e;
   --on-red: #f3e8cf; /* text on red buttons and bubbles, both themes */
+  --error: #e8574c; /* error text; --red-bright is too dark to read on soot */
 
   --glow-top: #2a1b14;
   --glow-bottom: #000;
@@ -48,6 +49,7 @@
   --red-bright: #8f1b15;
   --gold: #7a5712;
   --gold-dim: #a07c2c;
+  --error: #8f1b15;
 
   --glow-top: #fbf3df;
   --glow-bottom: #d8c59a;
@@ -142,6 +144,11 @@ main {
 
 main > section + section {
   margin-top: 5rem;
+}
+
+/* A page title straight above its first section (account, admin). */
+main > h1 + section {
+  margin-top: 2.5rem;
 }
 
 main > section > h2 {
@@ -835,7 +842,7 @@ button.button:disabled {
 }
 
 .form-error {
-  color: var(--red-bright);
+  color: var(--error);
 }
 
 .form-success {
