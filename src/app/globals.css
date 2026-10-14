@@ -26,6 +26,7 @@
   --gold: #c79a45;
   --gold-dim: #8f6e2e;
   --on-red: #f3e8cf; /* text on red buttons and bubbles, both themes */
+  --error: #e8574c; /* error text; --red-bright is too dark to read on soot */
 
   --glow-top: #2a1b14;
   --glow-bottom: #000;
@@ -48,6 +49,7 @@
   --red-bright: #8f1b15;
   --gold: #7a5712;
   --gold-dim: #a07c2c;
+  --error: #8f1b15;
 
   --glow-top: #fbf3df;
   --glow-bottom: #d8c59a;
@@ -144,6 +146,11 @@ main > section + section {
   margin-top: 5rem;
 }
 
+/* A page title straight above its first section (account, admin). */
+main > h1 + section {
+  margin-top: 2.5rem;
+}
+
 main > section > h2 {
   margin-bottom: 1.75rem;
   padding-bottom: 0.75rem;
@@ -199,7 +206,8 @@ body > header nav ul a:hover {
 }
 
 /* Theme toggle: styled like the nav links, shows the mode it switches TO */
-.theme-toggle {
+.theme-toggle,
+.nav-button {
   padding: 0.3rem 0.8rem;
   background: none;
   border: 1px solid var(--line);
@@ -215,7 +223,9 @@ body > header nav ul a:hover {
 }
 
 .theme-toggle:hover,
-.theme-toggle:focus-visible {
+.theme-toggle:focus-visible,
+.nav-button:hover,
+.nav-button:focus-visible {
   color: var(--gold);
   border-color: var(--gold-dim);
 }
@@ -706,5 +716,266 @@ body > footer {
 
   .chat-panel {
     width: calc(100vw - 1.5rem);
+  }
+}
+
+/* ---------- Accounts, forms and class schedule ---------- */
+
+body > header nav ul {
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+main.narrow {
+  max-width: 34rem;
+  /* Room to scroll the last field and the button clear of the floating
+     "Ask the Dojo" chat button. */
+  padding-bottom: 8rem;
+}
+
+/* Form pages: a calmer heading than the landing-page size, with clear space
+   before the subtitle and the first field. */
+main.narrow h1 {
+  font-size: clamp(2rem, 6vw, 3rem);
+  margin-bottom: 1rem;
+}
+
+main.narrow h1 + .lede {
+  margin-top: 0;
+  margin-bottom: 2rem;
+}
+
+main.narrow .form {
+  margin-top: 0;
+}
+
+button.button {
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+button.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.button.small {
+  margin-top: 0;
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  box-shadow: 2px 2px 0 var(--line);
+}
+
+.button.ghost {
+  background: none;
+  border-color: var(--line);
+  color: var(--text-dim);
+}
+
+.button.ghost:hover,
+.button.ghost:focus-visible {
+  background: none;
+  border-color: var(--gold-dim);
+  color: var(--gold);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  margin-top: 1.5rem;
+}
+
+.form .button {
+  align-self: flex-start;
+}
+
+.form-wide {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  align-items: end;
+}
+
+.form-wide .form-error,
+.form-wide .form-success,
+.form-wide .button {
+  grid-column: 1 / -1;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.field label {
+  font-family: var(--font-label), sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.field input,
+.field select {
+  padding: 0.6rem 0.75rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--text);
+  font: inherit;
+}
+
+.field input[readonly] {
+  color: var(--text-dim);
+}
+
+.field input:focus-visible,
+.field select:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 1px;
+}
+
+.hint {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+}
+
+.form-error {
+  color: var(--error);
+}
+
+.form-success {
+  color: var(--gold);
+}
+
+.form-alt {
+  margin-top: 1.5rem;
+  color: var(--text-dim);
+}
+
+.form-alt a {
+  color: var(--gold);
+}
+
+.inline-form {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.schedule-section {
+  margin-top: 4rem;
+}
+
+.schedule-section > h2 {
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.schedule {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  list-style: none;
+}
+
+.schedule-item {
+  display: grid;
+  grid-template-columns: minmax(9rem, 1fr) 2fr auto;
+  align-items: center;
+  gap: 0.5rem 1.5rem;
+  padding: 0.9rem 1.1rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+
+.schedule-item.muted {
+  opacity: 0.65;
+}
+
+.schedule-when {
+  display: flex;
+  flex-direction: column;
+}
+
+.schedule-when strong {
+  font-family: var(--font-label), sans-serif;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.schedule-when a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.schedule-when a:hover {
+  color: var(--gold);
+}
+
+.schedule-when span,
+.schedule-meta {
+  color: var(--text-dim);
+}
+
+.schedule-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  font-size: 0.95rem;
+}
+
+.schedule-meta span:not(:last-child)::after {
+  content: "\00b7";
+  margin-left: 1rem;
+}
+
+.schedule-action {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.badge {
+  align-self: center;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid var(--gold-dim);
+  color: var(--gold);
+  font-family: var(--font-label), sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.roster-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-block: 1rem 1.5rem;
+}
+
+.roster {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-left: 1.5rem;
+}
+
+.roster li span {
+  margin-left: 1rem;
+  color: var(--text-dim);
+}
+
+@media (max-width: 40rem) {
+  .schedule-item {
+    grid-template-columns: 1fr;
+  }
+
+  .schedule-action {
+    justify-content: flex-start;
   }
 }

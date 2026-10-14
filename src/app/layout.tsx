@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Alfa_Slab_One, Crimson_Pro, Oswald } from "next/font/google";
 import Link from "next/link";
+import { Suspense } from "react";
 import "./globals.css";
+import { AuthNav } from "@/components/auth-nav";
 import { ChatWidget } from "@/components/chat-widget";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { siteName } from "@/lib/mock-data/site-content";
@@ -62,6 +64,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               <li>
                 <Link href="/martial-arts">Martial Arts</Link>
               </li>
+              <Suspense
+                fallback={
+                  <li>
+                    <Link href="/login">Log in</Link>
+                  </li>
+                }
+              >
+                <AuthNav />
+              </Suspense>
               <li>
                 <ThemeToggle />
               </li>
