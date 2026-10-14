@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { benefits, mission, services } from "@/lib/mock-data/site-content";
 
@@ -5,6 +6,16 @@ export default function Home() {
   return (
     <main>
       <section className="hero" aria-labelledby="mission-heading">
+        <div className="hero-media">
+          <Image
+            src="/hero.jpg"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="hero-photo"
+          />
+        </div>
         <h1 id="mission-heading">Train smart. Stay safe.</h1>
         <h2>Our Mission</h2>
         <p>{mission}</p>
